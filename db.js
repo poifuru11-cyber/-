@@ -1,5 +1,7 @@
 let db;
 
+function initDB(callback){
+
 const request = indexedDB.open("plantDB",1);
 
 request.onupgradeneeded = e=>{
@@ -13,5 +15,11 @@ db.createObjectStore("records",{keyPath:"id"});
 };
 
 request.onsuccess = e=>{
+
 db = e.target.result;
+
+callback();
+
 };
+
+}
